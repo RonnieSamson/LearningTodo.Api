@@ -21,7 +21,7 @@ jobs:
         run: dotnet build LearningTodo.Api.slnx --no-restore
 
       - name: Run tests
-        run: dotnet test LearningTodo.Api.slnx --no-build --verbosity normal
+        run: dotnet test --solution LearningTodo.Api.slnx --no-build
        
          
 
