@@ -1,4 +1,4 @@
-name: LearningToDo CI
+name: LearningTodo CI
 
 on:
   push:
@@ -16,12 +16,12 @@ jobs:
         with: 
           dotnet-version: '10.0.x' 
       - name: Restore Dependencies
-        run: dotnet restore LearningToDo.Api.slnx
+        run: dotnet restore LearningTodo.Api.slnx
       - name: Build
-        run: dotnet build LearningToDo.Api.slnx --no-restore
+        run: dotnet build LearningTodo.Api.slnx --no-restore
 
       - name: Run tests
-        run: dotnet test LearningToDo.Api.slnx --no-build --verbosity normal
+        run: dotnet test LearningTodo.Api.slnx --no-build --verbosity normal
        
          
 
