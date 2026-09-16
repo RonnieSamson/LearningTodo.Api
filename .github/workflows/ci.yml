@@ -1,0 +1,27 @@
+name: LearningToDo CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hämtar repository
+        uses: actions/checkout@v7
+      - name: Installera .Net 10
+        uses: actions/setup-dotnet@v6
+        with: 
+          dotnet-version: '10.0.x' 
+      - name: Restore Dependencies
+        run: dotnet restore LearningToDo.Api.slnx
+      - name: Build
+        run: dotnet build LearningToDo.Api.slnx --no-restore
+
+      - name: Run tests
+        run: dotnet test LearningToDo.Api.slnx --no-build --verbosity normal
+       
+         
+
