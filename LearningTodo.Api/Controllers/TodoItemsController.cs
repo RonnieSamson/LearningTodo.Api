@@ -30,12 +30,23 @@ namespace LearningTodo.Api.Controllers
             return Ok(todoItems);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TodoItem>> GetById(int id)
+        {
+            var todoItem = await _context.TodoItems.FindAsync(id);
+            if (todoItem == null)
+            {
+                return NotFound();
+            }
+            return Ok(todoItem);
+        }
+
         [HttpPost]
         public async Task<ActionResult<TodoItem>> Create(TodoItem todoItem)
         {
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetAll), new { id = todoItem.Id }, todoItem);
+            return CreatedAtAction(nameof(GetById), new { id = todoItem.Id }, todoItem);
         }
 
     }
